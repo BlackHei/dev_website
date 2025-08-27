@@ -50,17 +50,24 @@
           padding: 10px 0;
           font-size: 0.9em;
         }
-        .button {
-          display: inline-block;
-          background: #4CAF50;
-          color: white;
-          padding: 10px 20px;
-          text-decoration: none;
-          border-radius: 5px;
-          margin-top: 10px;
+        .app-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+          gap: 20px;
+          margin-top: 20px;
+          text-align: center;
         }
-        .button:hover {
-          background: #45a049;
+        .app-item img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover; /* 保证图片不变形 */
+          border-radius: 20px;
+          margin-bottom: 10px;
+        }
+        .app-item p {
+          margin: 0;
+          font-weight: bold;
+          color: #333;
         }
     </style>
 </head>
@@ -75,10 +82,42 @@
         <p>Welcome to <strong>My Studio</strong>, the official home of our mobile apps.
             We create useful and fun applications to make your life easier and more enjoyable.</p>
     </section>
+
     <section id="apps">
         <h2>Our Apps</h2>
         <p>Check out our apps on Google Play:</p>
-        <a class="button" href="https://play.google.com/store/apps/details?id=com.bf.english_concept" target="_blank">Download on Google Play</a>
+        <div class="app-grid">
+            <div class="app-item">
+                <a href="https://play.google.com/store/apps/details?id=com.bf.english_concept" target="_blank">
+                    <img src="https://BlackHei.github.io/dev_website/icons/concept.png" alt="App 1" />
+                    <p>新概念英语全四册</p>
+                </a>
+            </div>
+            <div class="app-item">
+                <a href="https://play.google.com/store/apps/details?id=com.bf.english_concept_1" target="_blank">
+                    <img src="https://BlackHei.github.io/dev_website/icons/concept.png" alt="App 2" />
+                    <p>新概念英语第一册</p>
+                </a>
+            </div>
+            <div class="app-item">
+                <a href="https://play.google.com/store/apps/details?id=com.concept.english_video" target="_blank">
+                    <img src="https://BlackHei.github.io/dev_website/icons/concept_video.png" alt="App 3" />
+                    <p>新概念英语精讲视频</p>
+                </a>
+            </div>
+            <div class="app-item">
+                <a href="https://play.google.com/store/apps/details?id=com.bf.words_recite" target="_blank">
+                    <img src="https://BlackHei.github.io/dev_website/icons/word_memory.png" alt="App 4" />
+                    <p>黑马背单词</p>
+                </a>
+            </div>
+            <div class="app-item">
+                <a href="https://play.google.com/store/apps/details?id=com.videostatusmaker.flyu" target="_blank">
+                    <img src="https://BlackHei.github.io/dev_website/icons/echo_vid.png" alt="App 5" />
+                    <p>Video Status Maker</p>
+                </a>
+            </div>
+        </div>
     </section>
 
     <section id="privacy">
