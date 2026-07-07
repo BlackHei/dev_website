@@ -1,127 +1,1381 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlackFinger Studio</title>
+
+    <!-- Primary SEO -->
+    <title>BlackFinger Studio — 专注精品学习工具 | 新概念英语 · 背单词 · 语法练习 · 书法字帖</title>
+    <meta name="description" content="BlackFinger Studio 官方出品：新概念英语全四册、新概念英语精讲视频、黑马背单词、English Grammar Test、书法练习字帖生成。五款精品学习App，全免费，覆盖英语听说读写、单词记忆、语法训练与书法临摹。" />
+    <meta name="keywords" content="新概念英语,英语学习App,背单词,单词记忆,英语语法练习,书法字帖,字帖生成,English Grammar Test,Android学习应用,免费英语App,BlackFinger Studio" />
+    <meta name="author" content="BlackFinger Studio" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://born2win.online/" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="BlackFinger Studio" />
+    <meta property="og:title" content="BlackFinger Studio — 专注精品学习工具 | 新概念英语 · 背单词 · 语法 · 书法" />
+    <meta property="og:description" content="五款精品学习App，从英语到书法，全部免费。新概念英语、黑马背单词、语法测试、字帖生成，让学习触手可及。" />
+    <meta property="og:url" content="https://born2win.online/" />
+    <meta property="og:image" content="https://born2win.online/icons/concept.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="BlackFinger Studio 学习应用合集" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BlackFinger Studio — 专注精品学习工具" />
+    <meta name="twitter:description" content="五款精品学习App，全部免费。新概念英语、背单词、语法测试、书法字帖生成。" />
+    <meta name="twitter:image" content="https://born2win.online/icons/concept.png" />
+
+    <!-- Mobile / PWA -->
+    <meta name="theme-color" content="#5B6FE6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="BlackFinger" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://play.google.com" />
+    <link rel="dns-prefetch" href="https://play.google.com" />
+
     <style>
+        /* ===== Reset & Variables ===== */
+        :root {
+            --primary: #5B6FE6;
+            --primary-dark: #4A5CD4;
+            --primary-light: #EEF0FD;
+            --accent: #FF7B4A;
+            --bg: #F8F9FC;
+            --card-bg: #FFFFFF;
+            --text: #2D3142;
+            --text-secondary: #6B7085;
+            --text-muted: #9CA0B0;
+            --border: #E8ECF2;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.10), 0 8px 20px rgba(0,0,0,0.05);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          line-height: 1.6;
-          color: #333;
-          background: #f9f9f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
         }
-        header {
-          background: #4CAF50;
-          color: white;
-          padding: 20px;
-          text-align: center;
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all var(--transition);
         }
-        header h1 {
-          margin: 0;
-          font-size: 2em;
+
+        .nav.scrolled {
+            border-bottom-color: var(--border);
+            box-shadow: var(--shadow-sm);
         }
-        nav {
-          margin-top: 10px;
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        nav a {
-          color: white;
-          text-decoration: none;
-          margin: 0 10px;
-          font-weight: bold;
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.3px;
         }
-        nav a:hover {
-          text-decoration: underline;
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), #7B8AF0);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
         }
-        main {
-          padding: 20px;
-          max-width: 900px;
-          margin: auto;
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
         }
-        section {
-          margin-bottom: 40px;
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.925rem;
+            font-weight: 500;
+            transition: color var(--transition);
+            position: relative;
         }
-        footer {
-          background: #333;
-          color: white;
-          text-align: center;
-          padding: 10px 0;
-          font-size: 0.9em;
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 1px;
+            transition: width var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 140px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 120%;
+            height: 160%;
+            background:
+                radial-gradient(ellipse 700px 500px at 15% 40%, rgba(91, 111, 230, 0.07), transparent),
+                radial-gradient(ellipse 600px 450px at 85% 30%, rgba(255, 123, 74, 0.04), transparent),
+                radial-gradient(ellipse 500px 400px at 50% 90%, rgba(91, 111, 230, 0.04), transparent);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            max-width: 540px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), #7B8AF0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 36px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all var(--transition);
+            box-shadow: 0 4px 20px rgba(91, 111, 230, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 28px rgba(91, 111, 230, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .hero-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color var(--transition);
+        }
+
+        .hero-cta-secondary:hover {
+            color: var(--primary);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Hero Visual - App Icon Collage */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .hero-app-collage {
+            position: relative;
+            width: 340px;
+            height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-app-collage::before {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(91, 111, 230, 0.08), transparent 70%);
+            border-radius: 50%;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .hero-app-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            animation: floatIcon 5s ease-in-out infinite;
+        }
+
+        .hero-app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-app-icon:hover {
+            transform: scale(1.15) !important;
+            box-shadow: 0 16px 48px rgba(91, 111, 230, 0.25);
+            z-index: 10;
+        }
+
+        /* 5 icons positioned in a circle pattern */
+        .hero-app-icon:nth-child(1) { top: 0; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+        .hero-app-icon:nth-child(2) { top: 10%; right: 1%; transform: translate(50%, -50%); animation-delay: 0.6s; }
+        .hero-app-icon:nth-child(3) { bottom: 5%; right: 5%; transform: translate(40%, 40%); animation-delay: 1.2s; }
+        .hero-app-icon:nth-child(4) { bottom: 5%; left: 5%; transform: translate(-40%, 40%); animation-delay: 1.8s; }
+        .hero-app-icon:nth-child(5) { top: 10%; left: 1%; transform: translate(-50%, -50%); animation-delay: 2.4s; }
+
+        .hero-app-label {
+            position: absolute;
+            bottom: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hero-app-icon:hover .hero-app-label {
+            opacity: 1;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translate(var(--tx), var(--ty)) translateY(0); }
+            50% { transform: translate(var(--tx), var(--ty)) translateY(-8px); }
+        }
+
+        /* Define per-icon translate offsets */
+        .hero-app-icon:nth-child(1) { --tx: -50%; --ty: -50%; }
+        .hero-app-icon:nth-child(2) { --tx: 50%; --ty: -50%; }
+        .hero-app-icon:nth-child(3) { --tx: 40%; --ty: 40%; }
+        .hero-app-icon:nth-child(4) { --tx: -40%; --ty: 40%; }
+        .hero-app-icon:nth-child(5) { --tx: -50%; --ty: -50%; }
+
+        @keyframes floatIcon {
+            0%, 100% { translate: 0 0; }
+            50% { translate: 0 -6px; }
+        }
+
+        .hero-phone-frame {
+            position: absolute;
+            width: 140px;
+            height: 280px;
+            background: white;
+            border-radius: 24px;
+            border: 3px solid var(--border);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .hero-phone-screen {
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            background: linear-gradient(160deg, var(--primary-light), rgba(255,123,74,0.08));
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px;
+        }
+
+        .hero-phone-screen span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .hero-phone-mini-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .hero-phone-mini-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== Section Common ===== */
+        .section {
+            padding: 80px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 560px;
+            line-height: 1.8;
+        }
+
+        /* ===== About ===== */
+        .about {
+            padding: 80px 24px;
+        }
+
+        .about-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-feature {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: all var(--transition);
+        }
+
+        .about-feature:hover {
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .about-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .about-feature h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .about-feature p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== Apps ===== */
+        .apps {
+            padding: 80px 24px;
+            background: white;
+        }
+
+        .apps-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .app-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-          gap: 20px;
-          margin-top: 20px;
-          text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
         }
-        .app-item img {
-          width: 100px;
-          height: 100px;
-          object-fit: cover; /* 保证图片不变形 */
-          border-radius: 20px;
-          margin-bottom: 10px;
+
+        .app-card {
+            background: var(--bg);
+            border-radius: var(--radius-lg);
+            padding: 32px 20px 24px;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid transparent;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
-        .app-item p {
-          margin: 0;
-          font-weight: bold;
-          color: #333;
+
+        .app-card:hover {
+            background: var(--card-bg);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border);
+            transform: translateY(-6px);
+        }
+
+        .app-card-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 16px;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .app-card:hover .app-card-icon {
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.05);
+        }
+
+        .app-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .app-card-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .app-card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 2px 10px;
+            background: var(--border);
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .app-card-badge {
+            display: inline-block;
+            height: 40px;
+            transition: opacity 0.2s;
+            opacity: 0.75;
+        }
+
+        .app-card:hover .app-card-badge {
+            opacity: 1;
+        }
+
+        .app-card-badge img {
+            height: 100%;
+            width: auto;
+        }
+
+        /* ===== Privacy & Contact ===== */
+        .info {
+            padding: 80px 24px;
+        }
+
+        .info-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            transition: all var(--transition);
+        }
+
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-light);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: gap var(--transition);
+        }
+
+        .info-link:hover {
+            gap: 10px;
+        }
+
+        .info-link-arrow {
+            transition: transform var(--transition);
+        }
+
+        .info-link:hover .info-link-arrow {
+            transform: translateX(2px);
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 60px 24px;
+            background: var(--bg);
+        }
+
+        .faq-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 36px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: all var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .faq-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 48px 24px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 120px 20px 72px;
+                min-height: auto;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-stat {
+                text-align: center;
+            }
+
+            .hero-stat-number {
+                font-size: 1.5rem;
+            }
+
+            .hero-visual {
+                min-height: 320px;
+            }
+
+            .hero-app-collage {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-app-icon {
+                width: 64px;
+                height: 64px;
+                border-radius: 16px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .app-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 16px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-card {
+                padding: 24px 14px 20px;
+            }
+
+            .app-card-icon {
+                width: 72px;
+                height: 72px;
+                border-radius: 18px;
+            }
+
+            .info-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .nav-logo span:last-child {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .hero-app-collage {
+                width: 240px;
+                height: 240px;
+            }
+
+            .hero-app-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+            }
+
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-stats {
+                gap: 16px;
+            }
         }
     </style>
 </head>
 <body>
-<header>
-    <h1>BlackFinger Studio</h1>
-</header>
 
-<main>
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Welcome to <strong>My Studio</strong>, the official home of our mobile apps.
-            We create useful and fun applications to make your life easier and more enjoyable.</p>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="nav-logo-icon">B</span>
+                <span>BlackFinger Studio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">关于 About</a></li>
+                <li><a href="#apps">应用 Apps</a></li>
+                <li><a href="#faq">常见问题 FAQ</a></li>
+                <li><a href="#privacy">隐私 Privacy</a></li>
+                <li><a href="#contact">联系 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <span class="hero-badge animate-in">让学习更简单 · Learn Smarter</span>
+                <h1 class="animate-in delay-1">
+                    专注打造<span class="highlight">精品学习工具</span>
+                </h1>
+                <p class="hero-subtitle animate-in delay-2">
+                    BlackFinger Studio 致力于为全球学习者打造高质量的移动应用。从英语学习到书法练习，五款 App 覆盖听说读写、单词记忆、语法训练与临摹书写，让知识触手可及。
+                </p>
+                <div class="hero-actions animate-in delay-3">
+                    <a href="#apps" class="hero-cta">
+                        查看全部应用
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#privacy" class="hero-cta-secondary">
+                        隐私政策
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </a>
+                </div>
+                <div class="hero-stats animate-in delay-4">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5+</div>
+                        <div class="hero-stat-label">精品应用</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">100%</div>
+                        <div class="hero-stat-label">免费下载</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">4.5+</div>
+                        <div class="hero-stat-label">用户评分</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-in delay-2">
+                <div class="hero-app-collage">
+                    <div class="hero-app-icon">
+                        <a href="https://play.google.com/store/apps/details?id=com.bf.english_concept" target="_blank" rel="noopener">
+                            <img src="icons/concept.png" alt="新概念英语全四册" loading="lazy" />
+                        </a>
+                        <span class="hero-app-label">新概念英语全四册</span>
+                    </div>
+                    <div class="hero-app-icon">
+                        <a href="https://play.google.com/store/apps/details?id=com.concept.english_video" target="_blank" rel="noopener">
+                            <img src="icons/concept_video.png" alt="新概念英语精讲视频" loading="lazy" />
+                        </a>
+                        <span class="hero-app-label">新概念英语精讲视频</span>
+                    </div>
+                    <div class="hero-app-icon">
+                        <a href="https://play.google.com/store/apps/details?id=com.bf.words_recite" target="_blank" rel="noopener">
+                            <img src="icons/word_memory.png" alt="黑马背单词" loading="lazy" />
+                        </a>
+                        <span class="hero-app-label">黑马背单词</span>
+                    </div>
+                    <div class="hero-app-icon">
+                        <a href="https://play.google.com/store/apps/details?id=english.grammar.practice.test" target="_blank" rel="noopener">
+                            <img src="icons/grammar.png" alt="English Grammar Test" loading="lazy" />
+                        </a>
+                        <span class="hero-app-label">English Grammar Test</span>
+                    </div>
+                    <div class="hero-app-icon">
+                        <a href="https://play.google.com/store/apps/details?id=zitie.handwriting.practice" target="_blank" rel="noopener">
+                            <img src="icons/zitie.png" alt="书法练习-字帖生成" loading="lazy" />
+                        </a>
+                        <span class="hero-app-label">书法练习-字帖生成</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-inner">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-label">About Us · 关于我们</span>
+                    <h2>用心做好每一款<br/>学习工具</h2>
+                    <p>我们是一支热爱教育的开发团队，坚信好的工具能让学习事半功倍。每一款应用都经过精心打磨，从内容到交互，力求给用户最好的体验。</p>
+                    <p>We are a passionate dev team dedicated to building great educational tools. Every app is crafted with care, from content to interaction, striving to deliver the best learning experience.</p>
+                </div>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">📚</div>
+                        <h4>精选内容</h4>
+                        <p>专业教研团队把关内容质量</p>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">🎨</div>
+                        <h4>精美设计</h4>
+                        <p>简洁优雅的交互界面</p>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">⚡</div>
+                        <h4>流畅体验</h4>
+                        <p>极致性能，即开即用</p>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">🔒</div>
+                        <h4>隐私优先</h4>
+                        <p>尊重用户数据，安全可靠</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="apps">
-        <h2>Our Apps</h2>
-        <p>Check out our apps on Google Play:</p>
-        <div class="app-grid">
-            <div class="app-item">
-                <a href="https://play.google.com/store/apps/details?id=com.bf.english_concept" target="_blank">
-                    <img src="https://BlackHei.github.io/dev_website/icons/concept.png" alt="App 1" />
-                    <p>新概念英语全四册</p>
+    <!-- Apps -->
+    <section class="apps" id="apps">
+        <div class="apps-inner">
+            <span class="section-label">Our Apps · 我们的应用</span>
+            <h2 class="section-title">五款精品，总有一款适合你</h2>
+            <p class="section-desc">覆盖英语听说读写、单词记忆、语法练习以及书法临摹，全方位助力你的学习之旅。</p>
+
+            <div class="app-grid">
+                <!-- App 1: 新概念英语全四册 -->
+                <a href="https://play.google.com/store/apps/details?id=com.bf.english_concept" target="_blank" rel="noopener" class="app-card">
+                    <div class="app-card-icon">
+                        <img src="icons/concept.png" alt="新概念英语全四册" loading="lazy" />
+                    </div>
+                    <div class="app-card-name">新概念英语全四册</div>
+                    <span class="app-card-tag">英语学习 · English</span>
+                    <div class="app-card-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+                    </div>
                 </a>
-            </div>
-            <div class="app-item">
-                <a href="https://play.google.com/store/apps/details?id=com.concept.english_video" target="_blank">
-                    <img src="https://BlackHei.github.io/dev_website/icons/concept_video.png" alt="App 3" />
-                    <p>新概念英语精讲视频</p>
+
+                <!-- App 2: 新概念英语精讲视频 -->
+                <a href="https://play.google.com/store/apps/details?id=com.concept.english_video" target="_blank" rel="noopener" class="app-card">
+                    <div class="app-card-icon">
+                        <img src="icons/concept_video.png" alt="新概念英语精讲视频" loading="lazy" />
+                    </div>
+                    <div class="app-card-name">新概念英语精讲视频</div>
+                    <span class="app-card-tag">视频课程 · Video</span>
+                    <div class="app-card-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+                    </div>
                 </a>
-            </div>
-            <div class="app-item">
-                <a href="https://play.google.com/store/apps/details?id=com.bf.words_recite" target="_blank">
-                    <img src="https://BlackHei.github.io/dev_website/icons/word_memory.png" alt="App 4" />
-                    <p>黑马背单词</p>
+
+                <!-- App 3: 黑马背单词 -->
+                <a href="https://play.google.com/store/apps/details?id=com.bf.words_recite" target="_blank" rel="noopener" class="app-card">
+                    <div class="app-card-icon">
+                        <img src="icons/word_memory.png" alt="黑马背单词" loading="lazy" />
+                    </div>
+                    <div class="app-card-name">黑马背单词</div>
+                    <span class="app-card-tag">单词记忆 · Vocabulary</span>
+                    <div class="app-card-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+                    </div>
+                </a>
+
+                <!-- App 4: English Grammar Test -->
+                <a href="https://play.google.com/store/apps/details?id=english.grammar.practice.test" target="_blank" rel="noopener" class="app-card">
+                    <div class="app-card-icon">
+                        <img src="icons/grammar.png" alt="English Grammar Test" loading="lazy" />
+                    </div>
+                    <div class="app-card-name">Grammar Test</div>
+                    <span class="app-card-tag">语法练习 · Grammar</span>
+                    <div class="app-card-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+                    </div>
+                </a>
+
+                <!-- App 5: 书法练习-字帖生成 -->
+                <a href="https://play.google.com/store/apps/details?id=zitie.handwriting.practice" target="_blank" rel="noopener" class="app-card">
+                    <div class="app-card-icon">
+                        <img src="icons/zitie.png" alt="书法练习-字帖生成" loading="lazy" />
+                    </div>
+                    <div class="app-card-name">书法练习-字帖生成</div>
+                    <span class="app-card-tag">书法临摹 · Calligraphy</span>
+                    <div class="app-card-badge">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="privacy">
-        <h2>Privacy Policy</h2>
-        <p>We respect your privacy. Read our full privacy policy here:</p>
-        <a href="https://sites.google.com/view/finger-private/" target="_blank">Privacy Policy</a>
+    <!-- Privacy & Contact -->
+    <section class="info" id="info">
+        <div class="info-inner">
+            <div class="info-card" id="privacy">
+                <div class="info-card-icon">🔐</div>
+                <h3>隐私政策 Privacy Policy</h3>
+                <p>我们重视您的隐私，绝不滥用您的个人数据。详细了解我们的数据处理方式和隐私保护措施。</p>
+                <p>We take your privacy seriously. Learn more about how we handle and protect your data.</p>
+                <a href="https://sites.google.com/view/finger-private/" target="_blank" rel="noopener" class="info-link">
+                    查看完整政策 Read Policy
+                    <span class="info-link-arrow">→</span>
+                </a>
+            </div>
+
+            <div class="info-card" id="contact">
+                <div class="info-card-icon">✉️</div>
+                <h3>联系我们 Contact Us</h3>
+                <p>有任何问题、建议或合作意向？欢迎随时通过邮件联系我们，我们会在第一时间回复。</p>
+                <p>Questions, feedback, or collaboration? Drop us an email — we'll get back to you promptly.</p>
+                <a href="mailto:finger.help0221@gmail.com" class="info-link">
+                    finger.help0221@gmail.com
+                    <span class="info-link-arrow">→</span>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>If you have questions or feedback, feel free to reach out:</p>
-        <p>Email: <a href="mailto:youremail@example.com">finger.help0221@gmail.com</a></p>
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="faq-inner">
+            <span class="section-label">FAQ · 常见问题</span>
+            <h2 class="section-title">关于我们的学习应用</h2>
+            <p class="section-desc">以下是用户最常问的问题，帮助你更好地了解我们的产品。</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>这些App都是免费的吗？</h4>
+                    <p>是的，BlackFinger Studio 出品的全部学习应用均为免费下载使用，无需付费即可享受完整功能。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>支持哪些设备？</h4>
+                    <p>目前所有 App 均面向 Android 设备，可通过 Google Play 商店下载安装。兼容 Android 7.0 及以上系统。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>新概念英语App包含哪几册内容？</h4>
+                    <p>「新概念英语全四册」完整收录第一册至第四册全部课文内容；「新概念英语精讲视频」提供逐课视频讲解，两者可搭配使用效果更佳。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>黑马背单词有什么特色？</h4>
+                    <p>基于艾宾浩斯遗忘曲线的智能复习算法，涵盖四六级、考研、雅思、托福等词库，支持发音、例句、错词本等功能。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>English Grammar Test 适合什么水平？</h4>
+                    <p>覆盖从初级 (Beginner) 到高级 (Advanced) 的全部语法知识点，适合各阶段英语学习者系统检测和提升语法能力。</p>
+                </div>
+                <div class="faq-item">
+                    <h4>字帖生成器可以自定义内容吗？</h4>
+                    <p>可以。「书法练习-字帖生成」支持输入任意文字生成临摹字帖，提供楷书、行书等多种书法字体，适合学生练字和书法爱好者日常练习。</p>
+                </div>
+            </div>
+        </div>
     </section>
-</main>
-<footer>
-    <p>&copy; 2025 BlackFinger Studio. All rights reserved.</p>
-</footer>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="nav-logo-icon" style="background: rgba(255,255,255,0.15); width: 28px; height: 28px; border-radius: 8px; font-size: 0.85rem;">B</span>
+                BlackFinger Studio
+            </div>
+            <div class="footer-copy">&copy; 2025 BlackFinger Studio. All rights reserved.</div>
+            <ul class="footer-links">
+                <li><a href="#privacy">隐私 Privacy</a></li>
+                <li><a href="#contact">联系 Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Simple scroll observer for nav -->
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://born2win.online/#org",
+                "name": "BlackFinger Studio",
+                "url": "https://born2win.online",
+                "description": "专注打造精品学习工具的移动应用开发工作室，旗下拥有新概念英语、黑马背单词、英语语法测试、书法字帖生成等多款教育App。",
+                "email": "finger.help0221@gmail.com",
+                "foundingDate": "2024",
+                "sameAs": [
+                    "https://play.google.com/store/apps/dev?id=BlackFinger+Studio"
+                ]
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://born2win.online/#app-concept",
+                "name": "新概念英语全四册",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+                "description": "完整收录新概念英语全四册内容，支持课文朗读、跟读练习，适合英语学习者系统提升。",
+                "url": "https://play.google.com/store/apps/details?id=com.bf.english_concept",
+                "author": { "@id": "https://born2win.online/#org" }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://born2win.online/#app-concept-video",
+                "name": "新概念英语精讲视频",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+                "description": "新概念英语精讲视频课程，名师逐课讲解，配合字幕和笔记功能，高效掌握新概念英语。",
+                "url": "https://play.google.com/store/apps/details?id=com.concept.english_video",
+                "author": { "@id": "https://born2win.online/#org" }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://born2win.online/#app-words",
+                "name": "黑马背单词",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+                "description": "科学记忆曲线背单词，海量词库覆盖四六级、考研、雅思托福，让背单词事半功倍。",
+                "url": "https://play.google.com/store/apps/details?id=com.bf.words_recite",
+                "author": { "@id": "https://born2win.online/#org" }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://born2win.online/#app-grammar",
+                "name": "English Grammar Test",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+                "description": "全面的英语语法练习与测试，覆盖从初级到高级的所有语法点，实时评分与详细解析。",
+                "url": "https://play.google.com/store/apps/details?id=english.grammar.practice.test",
+                "author": { "@id": "https://born2win.online/#org" }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://born2win.online/#app-zitie",
+                "name": "书法练习-字帖生成",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Android",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+                "description": "自定义字帖生成工具，支持多种书法字体，可输入任意文字生成临摹字帖，适合书法练习与汉字学习。",
+                "url": "https://play.google.com/store/apps/details?id=zitie.handwriting.practice",
+                "author": { "@id": "https://born2win.online/#org" }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://born2win.online/#website",
+                "url": "https://born2win.online",
+                "name": "BlackFinger Studio 官方网站",
+                "description": "BlackFinger Studio 官方出品的精品学习工具合集，涵盖英语学习与书法练习。",
+                "publisher": { "@id": "https://born2win.online/#org" },
+                "inLanguage": ["zh-CN", "en"]
+            }
+        ]
+    }
+    </script>
+
 </body>
 </html>

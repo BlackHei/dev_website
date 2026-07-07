@@ -1,0 +1,13 @@
+# https://born2win.online/robots.txt
+# BlackFinger Studio — 官方网站 robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://born2win.online/sitemap.xml
+
+# Crawl-delay (optional, respectful to servers)
+Crawl-delay: 10
+
+# Disallow private paths (none currently)

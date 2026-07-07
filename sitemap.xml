@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- 首页 -->
+    <url>
+        <loc>https://born2win.online/</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2026-07-07</lastmod>
+        <image:image>
+            <image:loc>https://born2win.online/icons/concept.png</image:loc>
+            <image:title>BlackFinger Studio 学习应用合集</image:title>
+            <image:caption>BlackFinger Studio 五款精品学习App</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://born2win.online/icons/concept_video.png</image:loc>
+            <image:title>新概念英语精讲视频</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://born2win.online/icons/word_memory.png</image:loc>
+            <image:title>黑马背单词</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://born2win.online/icons/grammar.png</image:loc>
+            <image:title>Grammar Test</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://born2win.online/icons/zitie.png</image:loc>
+            <image:title>书法练习-字帖生成</image:title>
+        </image:image>
+    </url>
+
+</urlset>
